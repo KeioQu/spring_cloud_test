@@ -24,6 +24,8 @@
         <module>ribbon_consumer</module>
         <module>feign_consumer</module>
         <module>config_server</module>
+        <module>redis_test</module>
+        <module>rabbitmq_test</module>
     </modules>
 
     
