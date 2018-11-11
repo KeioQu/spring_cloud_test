@@ -26,6 +26,7 @@
         <module>config_server</module>
         <module>redis_test</module>
         <module>rabbitmq_test</module>
+        <module>cache_test</module>
     </modules>
 
     

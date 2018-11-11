@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.example.demo.mapper.UserMapper" >
+  <sql id="BASE_TABLE">
+    test
+  </sql>
+
+  <sql id="BASE_COLUMN">
+    id_test,name,age
+  </sql>
+
+    <resultMap id="BaseResultMap" type="com.example.demo.po.UserPO">
+        <id column="id_test" jdbcType="VARCHAR" property="idTest" />
+        <result column="name" jdbcType="VARCHAR" property="name" />
+        <result column="age" jdbcType="VARCHAR" property="age" />
+    </resultMap>
+
+    <insert id="inserUser" parameterType="com.example.demo.po.UserPO">
+    INSERT INTO
+      <include refid="BASE_TABLE"/>
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+        <include refid="BASE_COLUMN"/>
+    </trim>
+    <trim prefix="VALUES(" suffix=")" suffixOverrides=",">
+      #{idTest, jdbcType=VARCHAR},
+        #{name, jdbcType=VARCHAR},
+        #{age, jdbcType=VARCHAR}
+    </trim>
+  </insert>
+
+  <select id="getUserPoById" parameterType="String" resultMap="BaseResultMap">
+      SELECT
+        <include refid="BASE_COLUMN"/>
+      FROM
+        <include refid="BASE_TABLE"/>
+      WHERE id_test = #{idTest, jdbcType=VARCHAR}
+  </select>
+
+    <update id="updateUser" parameterType="com.example.demo.po.UserPO">
+        update test
+        <set>
+            <if test="name != null">name=#{name},</if>
+            <if test="age != null">age=#{age}</if>
+        </set>
+        where id_test=#{idTest}
+    </update>
+</mapper>
